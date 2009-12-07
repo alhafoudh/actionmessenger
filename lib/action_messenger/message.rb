@@ -14,8 +14,8 @@ module ActionMessenger
     # The subject of the message.
     attr_accessor :subject
 
-    # The type of the message
-    attr_accessor :type
+    # The type of the message (:chat, ...)
+    attr_accessor :kind
 
     # Compares this object with another for equality.
     #
@@ -23,7 +23,7 @@ module ActionMessenger
     # are the same as this object's fields.
     def ==(that)
       return false if that.nil?
-      to == that.to and from == that.from and body == that.body and subject == that.subject and type == that.type
+      to == that.to and from == that.from and body == that.body and subject == that.subject and kind == that.kind
     end
   end
 end

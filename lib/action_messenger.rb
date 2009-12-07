@@ -5,5 +5,6 @@ require 'action_messenger/messenger'
 require 'action_messenger/messengers/mock_messenger'
 require 'action_messenger/messengers/xmpp4r_messenger'
 
+require 'rubygems'
 require 'xmpp4r'
 require 'yaml'

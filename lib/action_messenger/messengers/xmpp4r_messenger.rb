@@ -13,9 +13,11 @@ module ActionMessenger
         @client.connect(@config['host'] || nil, @config['port'] || 5022)
         @client.auth(@config['password']) 
 
+        set_presence
+
         @client.add_message_callback do |msg|
           message = ActionMessenger::Message.new
-          message.type = msg.type
+          message.kind = msg.type # !!!
           message.to = msg.to.to_s
           message.from = msg.from.to_s
           message.body = msg.body
@@ -24,10 +26,14 @@ module ActionMessenger
         end
 
       end
+
+      def set_presence
+        @client.send(Jabber::Presence.new)
+      end
     
       def send_message(msg)
         message = Jabber::Message.new
-        message.type = msg.type
+        message.type = msg.kind # !!!
         message.to = msg.to
         message.to = Jabber::JID.new(msg.to) unless msg.to.is_a?(Jabber::JID)
         message.subject = msg.subject

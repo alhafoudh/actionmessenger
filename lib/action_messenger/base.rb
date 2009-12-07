@@ -49,7 +49,7 @@ module ActionMessenger
 
       recipients.each do |recipient|
         message = Message.new
-        message.type = type
+        message.kind = kind
         message.to = recipient
         message.subject = subject
         message.body = body
@@ -64,7 +64,7 @@ module ActionMessenger
       @recipients = []
       @subject = nil
       @body = {}
-      @type = :chat
+      @kind = :chat
     end
     
     # Sets the recipients of the message being sent.
@@ -102,6 +102,14 @@ module ActionMessenger
         @body = body
       end
       @body
+    end
+
+    # The kind of the message being built.
+    def kind(kind = nil)
+      unless kind.nil?
+        @kind = kind
+      end
+      @kind
     end
 
     # Sends multiple messages.
